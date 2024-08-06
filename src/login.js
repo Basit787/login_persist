@@ -28,7 +28,7 @@ const Login = () => {
   return (
     <div>
       <section className="container">
-        <Card className="card">
+        <Card className="card" variant="elevation">
           <h1>Login Form</h1>
           <div>
             <form className="login">
