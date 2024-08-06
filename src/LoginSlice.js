@@ -1,18 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
-    islogin: false
-}
 
 export const LoginSlice = createSlice({
     name: 'login',
-    initialState,
+    initialState:{},
     reducers: {
-        entry: (state) => {
-            state.islogin = true
+        entry: (state,action) => {
+            const keys = Object.keys(action.payload)
+            keys.forEach((key)=>{
+                state[key]=action.payload[key]})
         },
         logout: (state) => {
-            state.islogin = false
+            const keys=Object.keys(state)
+            keys.forEach((key)=>{
+                state[key]=""
+            })
         }
     },
 })
