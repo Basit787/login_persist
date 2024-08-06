@@ -20,7 +20,7 @@ const Login = () => {
   };
 
   const handleClick = () => {
-    if (user.name === "basit" && user.pass === "asdf") {
+    if (user.name.toLocaleLowerCase() === "basit" && user.pass === "asdf") {
       dispatch(entry({ idToken: "Abdul-Basit" }));
     }
   };
