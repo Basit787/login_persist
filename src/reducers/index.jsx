@@ -1,15 +1,15 @@
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-import LoginReducer from './LoginSlice'
-import {combineReducer} from '@reduxjs/toolkit'
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import LoginReducer from "./LoginSlice";
+import { combineReducers } from "@reduxjs/toolkit";
 
 const persistConfig = {
-    key: 'root',
-    storage,
-}
+  key: "root",
+  storage,
+};
 
-const rootReducer=combineReducer({
-    Login:LoginReducer
-})
+const rootReducer = combineReducers({
+  Login: LoginReducer,
+});
 
-export default  persistReducer(persistConfig, rootReducer)
+export default persistReducer(persistConfig, rootReducer);

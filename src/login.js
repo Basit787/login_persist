@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { entry } from "./LoginSlice";
-
+import { entry } from "./reducers/LoginSlice";
+import { Button, Card, TextField } from "@mui/material";
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -11,7 +11,7 @@ const Login = () => {
 
   const dispatch = useDispatch();
 
-  const handleChange = (event) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setUser((prev) => ({
       ...prev,
@@ -28,41 +28,34 @@ const Login = () => {
   return (
     <div>
       <section className="container">
-        <h1>Login Form</h1>
-
-        <div className="card">
+        <Card className="card">
+          <h1>Login Form</h1>
           <div>
             <form className="login">
-              <label className="label">
-                Username
-                <input
-                  type="text"
-                  value={user.name}
-                  name="name"
-                  placeholder="enter username"
-                  className="input"
-                  required
-                  onChange={handleChange}
-                />
-              </label>
-              <label className="label">
-                Password
-                <input
-                  type="password"
-                  value={user.pass}
-                  name="pass"
-                  placeholder="enter your password"
-                  className="input"
-                  required
-                  onChange={handleChange}
-                />
-              </label>
-              <button className="btn" onClick={handleClick}>
+              <TextField
+                type="text"
+                value={user.name}
+                name="name"
+                label="Name"
+                placeholder="enter username"
+                onChange={handleChange}
+              />
+
+              <TextField
+                type="password"
+                value={user.pass}
+                name="pass"
+                label="Password"
+                placeholder="enter your password"
+                onChange={handleChange}
+              />
+
+              <Button variant="contained" onClick={handleClick}>
                 LogIn
-              </button>
+              </Button>
             </form>
           </div>
-        </div>
+        </Card>
       </section>
     </div>
   );
