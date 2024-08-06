@@ -1,68 +1,71 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { entry } from './LoginSlice';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { entry } from "./LoginSlice";
 
-
-const userName = 'basit';
-const passWord = 'asdf';
 
 const Login = () => {
+  const [user, setUser] = useState({
+    name: "",
+    pass: "",
+  });
 
-    const [user, setUser] = useState('');
-    const [pass, setPass] = useState('');
+  const dispatch = useDispatch();
 
+  const handleChange = (event) => {
+    const { name, value } = e.target;
+    setUser((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
-
-    const login = useSelector((state) => state.islogin);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-
-
-    useEffect(() => {
-        if (login) {
-            navigate('/dashboard')
-        }
-    }, [login, navigate])
-
-
-    const handleUser = (event) => {
-        setUser(event.target.value);
+  const handleClick = () => {
+    if (user.name === "basit" && user.pass === "asdf") {
+      dispatch(entry({ idToken: "Abdul-Basit" }));
     }
-    const handlePass = (event) => {
-        setPass(event.target.value);
-    }
+  };
 
+  return (
+    <div>
+      <section className="container">
+        <h1>Login Form</h1>
 
-    const handleClick = () => {
-        if (user === userName && pass === passWord) {
-            dispatch(entry())
-        }
-        else {
-            alert('Wrong credentials!!!')
-        }
-    }
-
-
-
-
-    return (
-        <div>
-            <section className='container'>
-                <h1>Login Form</h1>
-
-                <div className='card'>
-                    <div >
-                        <form className='login'>
-                            <label className='label'>Username<input type='text' value={user} placeholder='enter username' className='input' required onChange={handleUser} /></label>
-                            <label className='label'>Password<input type='password' value={pass} placeholder='enter your password' className='input' required onChange={handlePass} /></label>
-                            <button className='btn' onClick={handleClick}>LogIn</button>
-                        </form>
-                    </div>
-                </div>
-            </section>
+        <div className="card">
+          <div>
+            <form className="login">
+              <label className="label">
+                Username
+                <input
+                  type="text"
+                  value={user.name}
+                  name="name"
+                  placeholder="enter username"
+                  className="input"
+                  required
+                  onChange={handleChange}
+                />
+              </label>
+              <label className="label">
+                Password
+                <input
+                  type="password"
+                  value={user.pass}
+                  name="pass"
+                  placeholder="enter your password"
+                  className="input"
+                  required
+                  onChange={handleChange}
+                />
+              </label>
+              <button className="btn" onClick={handleClick}>
+                LogIn
+              </button>
+            </form>
+          </div>
         </div>
-    )
-}
+      </section>
+    </div>
+  );
+};
 
-export default Login
+export default Login;
